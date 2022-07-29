@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax 예제2</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	function fn_process() {
+		$.ajax({
+			type: "post",
+			dataType: "xml", //데이터를 XML 형태로 받습니다.
+			async:false, //false인 경우 동기식으로 처리합니다.
+			url:"http://localhost:8080/pro16/ajaxTest2", //전송주고받을 url
+			success:function (info,textStatus) {	//전송과 응답이 성공했을 경우의 작업을 설정.
+				$(info).find("book").each(function() {
+					var title=$(this).find("title").text();
+					var writer=$(this).find("writer").text();
+					var image=$(this).find("image").text();
+					$("#bookInfo").append(
+						"<p>" +title+ "</p>" +
+						"<p>" +writer + "</p>"+
+						"<img src="+image + " />"
+					);
+				});
+			},
+			error:function(data,textStatus) {	
+				alert("에러가 발생했습니다."); 
+			},
+			complete:function(data,textStatus) {
+				alert("작업을 완료했습니다");
+			}
+		});
+	}
+</script>
+</head>
+<body>
+
+	<input type="button" value="도서정보 요청" onClick="fn_process()" /><br><br>
+	
+	<div id="bookInfo"></div>
+</body>
+</html>
