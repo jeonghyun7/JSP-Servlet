@@ -1,0 +1,24 @@
+데이터 베이스와 연결할때
+
+해당 프로젝트의 Servers 더블클릭
+Tomcat v9.0 Server at localhost-config에서
+context.xml에 맨 끝에
+
+--> 아랫부분
+
+ <Resource name="jdbc/servletex"
+ auth="Container"
+ type="javax.sql.DataSource"
+ username="root"
+ password="1234"
+ driverClassName="org.mariadb.jdbc.Driver"                 // 오라클이나 mysql사용시 왼쪽부분""안의 내용과
+ url="jdbc:mariadb://localhost:3306/servletex" />	jdbc:옆의 mariadb부분만 바꾸면됨
+
+
+</Context> 바로 윗부분
+
+
+
+@@mariadb.com 치고 들어가서 오른쪽 다운로드
+
+Connectors 들어가고  Java8+connector / 3.0.7-GA 다운 후 빌드패스 해주기
